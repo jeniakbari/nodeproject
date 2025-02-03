@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 // app.set("views" , path.resolve("./src/views"))
 
 app.use(express.json())
-app.use(express.urlencoded())
+// app.use(express.urlencoded())
 
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 

@@ -8,12 +8,14 @@ const bookSchema = new mongoose.Schema({
     title:{
         type:String,
         required:true,
-        trim:true
+        trim:true,
+        index:true
     },
     authorname:{
         type:String,
         required:true,
-        trim:true
+        trim:true,
+        index:true
     },
     review:{
         type:String,
@@ -26,6 +28,8 @@ const bookSchema = new mongoose.Schema({
         required:false
     }
 })
+
+bookSchema.index({authorname:1,title:1})
 
 const Book = new mongoose.model('Book',bookSchema)
 
