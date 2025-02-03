@@ -1,6 +1,5 @@
 require('dotenv').config();
 const Book = require('../models/book');
-// const errorMiddleware = require('./middleware/error-middleware')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
@@ -20,7 +19,6 @@ const register = async(req,res,next)=>{
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    // res.status(500).json({ message: 'Server error' });
     next(error)
   }
 }
@@ -38,7 +36,6 @@ const login = async(req,res,next)=>{
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
     res.status(200).json({ token , userId: user._id });
   } catch (error) {
-    // res.status(500).json({ message: 'Server error' });
     next(error)
   }
 }
@@ -56,17 +53,6 @@ const getbooks = async(req,res,next) =>{
         next(e)
     }
 }
-
-// const getbookbyauthor = async(req,res,next)=>{
-//     try{
-//         const authorname = req.params.authname;
-//         const getauthbook = await Book.find({authorname});
-//         res.status(200).send(getauthbook);
-//     }
-//     catch(e){
-//         next(e)
-//     }
-// }
 
 const createbooks = async (req, res, next) => {
     try {
@@ -96,7 +82,6 @@ const updatebooks = async(req,res,next)=>{
         res.status(200).send(updatebook)
     }
     catch(e){
-        // res.status(400).send(e)
         next(e)
     }
 }
@@ -110,7 +95,6 @@ const deletebooks = async(req,res,next)=>{
         res.status(200).send(deletebook)
     }
     catch(e){
-        // res.status(400).send(e)
         next(e)
     }
 }
